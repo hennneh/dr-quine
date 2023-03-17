@@ -32,7 +32,7 @@ clean:
 	@$(RM) $(OBJC) $(OBJG) $(OBJS)
 
 fclean: clean
-	@$(RM) Colleene Grace Sully_* Sully
+	@$(RM) Colleene Grace Sully_* Sully Grace_kid.c
 
 re: fclean all
 
