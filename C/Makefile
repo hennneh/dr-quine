@@ -17,7 +17,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAMEC) $(NAMEG) $(NAMES)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAMEC): $(OBJC)
 	@$(CC) $(CFLAGS) -o $@ $<
@@ -36,4 +36,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all colleene grace sully clean fclean re
+.PHONY: all Colleene Grace Sully clean fclean re
