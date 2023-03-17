@@ -1,22 +1,38 @@
+RM = rm -rf
 CC = gcc
-FLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
-all: colleene grace sully
+NAMEC = Colleene
+NAMEG = Grace
+NAMES = Sully
 
-colleene:
-	@$(CC) $(FLAGS) Colleene.c -o Colleene
+SRCC = Colleene.c
+SRCG = Grace.c
+SRCS = Sully.c
 
-grace:
-	@$(CC) $(FLAGS) Grace.c -o Grace
-	
-sully:
-	@$(CC) $(FLAGS) Sully.c -o Sully_5
+OBJC = $(SRCC:.c=.o)
+OBJG = $(SRCG:.c=.o)
+OBJS = $(SRCS:.c=.o)
+
+all: $(NAMEC) $(NAMEG) $(NAMES)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+
+$(NAMEC): $(OBJC)
+	@$(CC) $(CFLAGS) -o $@ $<
+
+$(NAMEG): $(OBJG)
+	@$(CC) $(CFLAGS) -o $@ $<
+
+$(NAMES): $(OBJS)
+	@$(CC) $(CFLAGS) -o $@ $<
 
 clean:
-	@rm -rf *.o
+	@$(RM) $(OBJC) $(OBJG) $(OBJS)
 
 fclean: clean
-	@rm -rf Colleene Grace Sully_*
+	@$(RM) Colleene Grace Sully_* Sully
 
 re: fclean all
 
