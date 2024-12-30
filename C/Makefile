@@ -2,11 +2,11 @@ RM = rm -rf
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
-NAMEC = Colleene
+NAMEC = Colleen
 NAMEG = Grace
 NAMES = Sully
 
-SRCC = Colleene.c
+SRCC = Colleen.c
 SRCG = Grace.c
 SRCS = Sully.c
 
