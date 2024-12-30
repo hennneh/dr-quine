@@ -1,29 +1,22 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-int main(){
-int i=5;
-if(--i>=0){
-char c=i+'0';
-char *cmd=malloc(sizeof(char)*47);
-char *s=malloc(sizeof(char)*10);
-strncpy(s,"Sully_x.c",9);
-s[6]=c;
-s[9]='\0';
-FILE *f=fopen(s,"w");
-char *code="#include<stdio.h>%c#include<stdlib.h>%c#include<string.h>%cint main(){%cint i=%d;%cif(--i>=0){%cchar c=i+'0';%cchar *cmd=malloc(sizeof(char)*47);%cchar *s=malloc(sizeof(char)*10);%cstrncpy(s,%cSully_x.c%c,9);%cs[6]=c;%cs[9]='%c0';%cFILE *f=fopen(s,%cw%c);%cchar *code=%c%s%c;%cfprintf(f,code,10,10,10,10,i,10,10,10,10,10,34,34,10,10,92,10,34,34,10,34,code,34,10,10,10,34,34,10,10,10,92,10,10,10,34,34,10,92,10,10,10,10,10,10);%cfclose(f);%cstrncpy(cmd,%cgcc -Wall -Werror -Wextra Sully_x.c -o Sully_x%c,45);%ccmd[45]=c;%ccmd[32]=c;%ccmd[46]='%c0';%csystem(cmd);%cchar *run=malloc(sizeof(char)*10);%cstrncpy(run,%c./Sully_x%c,9);%crun[9]='%c0';%crun[8]=c;%csystem(run);%cfree(run);%cfree(s);%cfree(cmd);}}%c";
-fprintf(f,code,10,10,10,10,i,10,10,10,10,10,34,34,10,10,92,10,34,34,10,34,code,34,10,10,10,34,34,10,10,10,92,10,10,10,34,34,10,92,10,10,10,10,10,10);
-fclose(f);
-strncpy(cmd,"gcc -Wall -Werror -Wextra Sully_x.c -o Sully_x",45);
-cmd[45]=c;
-cmd[32]=c;
-cmd[46]='\0';
-system(cmd);
-char *run=malloc(sizeof(char)*10);
-strncpy(run,"./Sully_x",9);
-run[9]='\0';
-run[8]=c;
-system(run);
-free(run);
-free(s);
-free(cmd);}}
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+	char *s = "#include <stdio.h>%1$c#include <stdlib.h>%1$c#include <string.h>%1$c%1$cint main()%1$c{%1$c	char *s = %2$c%4$s%2$c;%1$c	int i = %5$d;%1$c	i--;%1$c	char filename[28];%1$c	sprintf(filename, %2$cSully_%3$cd.c%2$c, i);%1$c	char cmd[58];%1$c	sprintf(cmd, %2$cgcc %3$cs -o Sully_%3$cd && ./Sully_%3$cd%2$c, filename, i, i);%1$c	FILE *file = fopen(filename, %2$cw%2$c);%1$c	if(!file)%1$c		exit(1);%1$c	fprintf(file, s, 10, 34, 37, s, i);%1$c	fclose(file);%1$c	if(i > 0)%1$c		system(cmd);%1$c	return 0;%1$c}%1$c";
+	int i = 5;
+	i--;
+	char filename[28];
+	sprintf(filename, "Sully_%d.c", i);
+	char cmd[58];
+	sprintf(cmd, "gcc %s -o Sully_%d && ./Sully_%d", filename, i, i);
+	FILE *file = fopen(filename, "w");
+	if(!file)
+		exit(1);
+	fprintf(file, s, 10, 34, 37, s, i);
+	fclose(file);
+	if(i > 0)
+		system(cmd);
+	return 0;
+}
